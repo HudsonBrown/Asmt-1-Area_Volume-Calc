@@ -33,7 +33,6 @@ to be included)
 
 '''
 
-from assertions import add2
 from time import sleep
 from math import pi
 
@@ -47,30 +46,92 @@ def level_0_(): #To be updated
     Enter D for default view;
     Selection:
     """).lower()
-        if not choice == "q" or choice == "v" or choice == "d":
+        if choice == "q":
+            print("Thank you for using this program.")
+            sleep(1)
+            return False
+        elif choice == "v":
+            return 2
+        elif choice == "d":
+            return 1            
+        else:
             print("Sorry, that was not an option, try again. \n")
             sleep(1)
-        else:
-            return choice
+
+def level_1_(choice):
     
-def area_circle_(choice): # calculates area from radius with fomula (form)    
-    form = "A = πr^2"
     while True:
         try:
-            rad = float(input("Enter the radius of your circle (radius = 1/2 diameter): "))
-        except:
-            print('Please input an integer or floating point value.')
-            time.sleep(1)
-        else:
-            if choice == "d":
-                print(f"π * r^2 = {pi * rad^^2}")
-            elif choice =="v":
-                print(f"π * r^2 = {pi * rad^^2}, A = πr^2")
+            shape = int(input("""
+    What shape would you like to calculate the area or volume for?
+    Enter 1, 2, 3, 4, or 5 for:
+    1. Rectangular prism
+    2. Triangular prism
+    3. Cylinder
+    4. Square
+    5. Triangle
+    """))
+            if shape > 5 or shape < 1:
+                raise ValueError
+        except ValueError:
+            print("That was not one of the options, please try again.")
+            sleep(0.3)
+        
+        if choice == 1:
+            print(rectangular_prism_(),)
+        elif choice == 2:
+            print 
+        
+        
+        
+        
+def sides_(number):
+    dimensions = []
+    dim = ["length", "width", "height"]
+    while True:
+        try:
+            if number == 0:
+                dimensions.append(float(input("Enter the radius: ")))
+                dimensions.append(float(input("Enter the height: ")))
+            elif number == 1:
+                dimensions.append(float(input("Enter the radius: ")))
             else:
-                print("Something went wrong")
-            break
+                for n in number:
+                    dimensions.append(float(input(f"Enter the {dim[n]}: ")))
+            for x in dimensions:
+                if x < 0:
+                    raise ValueError
+                else:
+                    False
+        except ValueError:
+            print("The value you entered was not a positive integer or floating point, please try again.")
+        
+        return dimensions
 
+
+def rectangular_prism_():
+    sides = sides(3)
+    volume = sides[1] * sides[2] * sides[3]
+    return volume
+
+
+def triangular_prism_():
+    sides = sides(3)
+    volume = sides[1] * sides[2] * sides[3] / 2
+    return volume
+
+
+def cylinder_():
+    sides = sides(0)
+    volume = sides[1] * sides[2]
+    return volume
+        
+
+def prism_volume_(choice):
+    dim = sides_(3)
+    v = dim[1] * dim[2] * dim[3]
+    return v
+
+choice = level_0_()
 while True: #Main Program
-
-    
-    
+    level_1_(choice)
